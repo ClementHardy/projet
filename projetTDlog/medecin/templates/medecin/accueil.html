@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="prise_rendez-vous.css" />
+        <title>Prise de rendez-vous</title>
+    </head>
+
+    <body>
+        <h1>Clinique de Meudon</h1>
+        <figure>
+            {% load static %}
+            <img src="{% static "medecin/clinique_meudon.jpeg" %}" alt="Meudon"/>
+    		<figcaption>clinique de Meudon</figcaption>
+		</figure>
+        <h2>Docteurs</h2>
+
+        <ul>
+    		<li>Decotigny</li>
+    		<li><a href="/medecin/dehaine">Docteur Dehaine</a></li>
+    		<li>Hardy</li>
+    		<li>Janetta</li>
+		</ul>
+		<p>salut
+		</p>
+    </body>
+</html>
