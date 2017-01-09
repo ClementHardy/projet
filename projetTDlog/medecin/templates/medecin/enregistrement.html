@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-	<form action="{% url "connexion" %}" method="post">
+	<form action="{% url "enregistrement" %}" method="post">
 		    {% csrf_token %}
 		    {{ form.as_p }}
 		    

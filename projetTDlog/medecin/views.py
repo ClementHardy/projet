@@ -43,7 +43,7 @@ def connexion(request):
         if form.is_valid():
             username = form.cleaned_data["username"]
             password = form.cleaned_data["password"]
-            user = authenticate(username=username, password=password)  # Nous vérifions si les données sont correctes
+            user = authenticate(username=username, password=password) # Nous vérifions si les données sont correctes
             if user:  # Si l'objet renvoyé n'est pas None
                 login(request, user)  # nous connectons l'utilisateur
             else: # sinon une erreur sera affichée
@@ -57,8 +57,11 @@ def connexion(request):
     
 def enregistrement(request):
     form = EnregistrementForm(request.POST)
+    enregistre = False
     if form.is_valid():
-        User.objects.create_user(form.username,form.email,form.password)
+        enregistre = True
+        user = User.objects.create_user(form.cleaned_data["username"],form.cleaned_data["email"],form.cleaned_data['password'])
+       
     return render(request, 'medecin/enregistrement.html', locals())
     
     
