@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+	{% if user.is_authenticated %}
     <head>
         <meta charset="utf-8" />
         <title>Page du docteur Dehaine</title>
@@ -7,6 +8,14 @@
 
     <body>
         <h1>classez vos créneaux par ordre de préférence</h1>
-        
+        <ul>
+    		<li><a href="/medecin/formulaire">lundi</a></li>
+    		<li>mardi</li>
+    		<li>jeudi</li>
+    		<li>vendredi</li>
+		</ul>
     </body>
+    {%else%}
+    <h1>Vous devez d'abord vous identifiez!</h1>
+    {%endif%}
 </html>

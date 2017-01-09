@@ -12,6 +12,10 @@ from . import views
 urlpatterns = [
 
     url(r'^accueil$', views.home),
-    url(r'^dehaine$', views.dehaine)
+    url(r'^dehaine$', views.dehaine),
+    url(r'^dragdrop$', views.dragdrop),
+    url(r'^formulaire/$', views.formulaire_rdv, name='formulaire'),
+    url(r'^connexion$', views.connexion, name='connexion'),
+    url(r'^deconnexion$', views.deconnexion, name='deconnexion'),
 
 ]

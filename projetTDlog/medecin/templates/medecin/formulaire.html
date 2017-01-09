@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+	{% if envoi %}Votre rendez-vous vous sera bientôt attribué !
+	<li><a href="/medecin/accueil">Retourner à la page d'accueil</a></li>
+
+	{%else%}
+		<form action="{% url "formulaire" %}" method="post">
+		    {% csrf_token %}
+		    {{ form.as_p }}
+		    
+		    
+
+		<input type="submit" value="Submit" />
+		</form>
+	{% endif %}
+</html>
