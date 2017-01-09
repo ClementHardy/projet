@@ -17,5 +17,7 @@ urlpatterns = [
     url(r'^formulaire/$', views.formulaire_rdv, name='formulaire'),
     url(r'^connexion$', views.connexion, name='connexion'),
     url(r'^deconnexion$', views.deconnexion, name='deconnexion'),
+    url(r'^enregistrement$', views.enregistrement, name='enregistrement'),
+    
 
 ]

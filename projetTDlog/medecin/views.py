@@ -5,10 +5,10 @@ from datetime import datetime
 from django.contrib.auth import logout
 from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate, login
-
+from django.contrib.auth.models import User
 #formulaires
 from .forms import Rdv
-from .forms import ConnexionForm
+from .forms import ConnexionForm,EnregistrementForm
 
 def home(request):
     return render(request, 'medecin/accueil.html',locals())
@@ -21,6 +21,7 @@ def dragdrop(request):
 
 def formulaire_rdv(request):
     form = Rdv(request.POST or None)
+    envoi = False
     if form.is_valid(): 
         #permet de rendre le formulaire utilisable
         #pour une autre utilisation
@@ -37,7 +38,6 @@ def formulaire_rdv(request):
 
 def connexion(request):
     error = False
-
     if request.method == "POST":
         form = ConnexionForm(request.POST)
         if form.is_valid():
@@ -52,6 +52,15 @@ def connexion(request):
         form = ConnexionForm()
 
     return render(request, 'medecin/connexion.html', locals())
+    
+    
+    
+def enregistrement(request):
+    form = EnregistrementForm(request.POST)
+    if form.is_valid():
+        User.objects.create_user(form.username,form.email,form.password)
+    return render(request, 'medecin/enregistrement.html', locals())
+    
     
 def deconnexion(request):
     logout(request)

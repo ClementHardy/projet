@@ -1,27 +1,28 @@
-<h1>login</h1>
+
+<!DOCTYPE html>
+<html>
+	
 
 
-{% if error %}
+	{% if error %}
 
-<p><strong>Utilisateur inconnu ou mauvais de mot de passe.</strong></p>
+	<p><strong>Utilisateur inconnu ou mauvais de mot de passe.</strong></p>
 
-{% endif %}
+	{% endif %}
 
 
-{% if user.is_authenticated %}
+	{% if user.is_authenticated %}
 
-Vous êtes connecté, {{ user.username }} !
+	Vous êtes connecté, {{ user.username }} !
 
-{% else %}
+	{% else %}
 
-<form method="post" action=".">
+		<form action="{% url "connexion" %}" method="post">
+		    {% csrf_token %}
+		    {{ form.as_p }}
+		    
+		<input type="submit" value="Submit" />
+		</form>
 
-    {% csrf_token %}
-
-    {{ form.as_p }}
-
-    <input type="submit" value="Se connecter" />
-
-</form>
-
-{% endif %}
+	{% endif %}
+</html>
