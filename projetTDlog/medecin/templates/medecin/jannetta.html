@@ -1,5 +1,24 @@
+
+
+
 <!DOCTYPE html>
 <html>
+    {% if user.is_authenticated %}
+    <head>
+        <meta charset="utf-8" />
+        <title>Page du docteur Jannetta</title>
+    </head>
+
+    <body>
+        <h1>classez vos créneaux par ordre de préférence</h1>
+        <ul>
+            <li><a href="/medecin/formulaire">lundi</a></li>
+            <li>mardi</li>
+            <li>jeudi</li>
+            <li>vendredi</li>
+        </ul>
+    </body>
+    {%else%}
     <head>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="../static/medecin/w3.css">
@@ -17,12 +36,8 @@
 </div>
 
     </head>
-
-<body>
-    
-<!-- Page content -->
+    <!-- Page content -->
 <div class="w3-content w3-padding" style="max-width:1564px">
-
 
   <!-- About Section -->
   <div class="w3-container w3-padding-5" id="about">
@@ -31,22 +46,13 @@
   </div>
 
   <div class="w3-container w3-padding-5" id="about">
-    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-12"> Vous avez été déconnecté avec succès!</h3>
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-12"> Vous devez d'abord vous identifier!</h3>
     <a href="/medecin/accueil"><button class="w3-btn-block">Retour à la page d'accueil</button></a>
   </div>
   
  </div>
 
+    {%endif%}
 
 
-
-
-
-</body>
 </html>
-
-
-
-
-
-

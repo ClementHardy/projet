@@ -1,14 +1,34 @@
 <!DOCTYPE html>
 <html>
+<head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="../static/medecin/w3.css">
+        <!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <ul class="w3-navbar w3-white w3-wide w3-padding-8 w3-card-2">
+      <a  class="w3-margin-left"><b>MEUDON</b> Clinique</a>
+    <!-- Float links to the right. Hide them on small screens -->
+    <li class="w3-right ">
+      <a href="/medecin/enregistrement" class="w3-left w3-margin-left">S'enregistrer</a>
+      <a href="/medecin/connexion" class="w3-left">Connexion</a>
+      <a href="/medecin/deconnexion" class="w3-left w3-margin-right">Déconnexion</a>
+    </li>
+  </ul>
+</div>
 
-	<form action="{% url "enregistrement" %}" method="post">
+    </head>
+
+	
+<!-- Contact Section -->
+  <div class="w3-container w3-padding-32" id="contact">
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-12">S'enregistrer</h3>
+    <p>Tous les champs sont obligatoires</p>
+    <form action="{% url "enregistrement" %}" method="post" class="w3-input">
 		    {% csrf_token %}
 		    {{ form.as_p }}
 		    
 		    
 
 		<input type="submit" value="Submit" />
-		</form>
-
-	
-</html>
+    </form>
+  </div>
