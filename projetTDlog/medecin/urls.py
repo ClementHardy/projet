@@ -13,6 +13,9 @@ urlpatterns = [
 
     url(r'^accueil$', views.home),
     url(r'^dehaine$', views.dehaine),
+    url(r'^decottignies$', views.decottignies),
+    url(r'^jannetta$', views.jannetta),
+    url(r'^hardy$', views.hardy),
     url(r'^dragdrop$', views.dragdrop),
     url(r'^formulaire/$', views.formulaire_rdv, name='formulaire'),
     url(r'^connexion$', views.connexion, name='connexion'),

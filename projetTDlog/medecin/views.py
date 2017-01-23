@@ -15,6 +15,12 @@ def home(request):
 
 def dehaine(request):
     return render(request, 'medecin/dehaine.html',locals())
+def decottignies(request):
+    return render(request, 'medecin/decottignies.html',locals())
+def jannetta(request):
+    return render(request, 'medecin/jannetta.html',locals())
+def hardy(request):
+    return render(request, 'medecin/hardy.html',locals())
 
 def dragdrop(request):
     return render(request, 'medecin/dragdrop.html', locals())

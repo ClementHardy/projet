@@ -1,75 +1,79 @@
 <!DOCTYPE html>
 <html>
+
     <head>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="../static/medecin/w3.css">
         <!-- Navbar (sit on top) -->
-<div class="w3-top">
-  <ul class="w3-navbar w3-white w3-wide w3-padding-8 w3-card-2">
-      <a  class="w3-margin-left"><b>MEUDON</b> Clinique</a>
-    <!-- Float links to the right. Hide them on small screens -->
-    <li class="w3-right ">
-      <a href="/medecin/enregistrement" class="w3-left w3-margin-left">S'enregistrer</a>
-      <a href="/medecin/connexion" class="w3-left">Connexion</a>
-      <a href="/medecin/deconnexion" class="w3-left w3-margin-right">Déconnexion</a>
-    </li>
-  </ul>
-</div>
-
+        <div class="w3-top">
+          <ul class="w3-navbar w3-white w3-wide w3-padding-8 w3-card-2">
+            <li>
+              <a href="/medecin/accueil"  class="w3-margin-left"><b>MEUDON</b> Clinique</a>
+            </li>
+            <!-- Float links to the right. Hide them on small screens -->
+            <li class="w3-right ">
+              <a href="/medecin/enregistrement" class="w3-left w3-margin-left">S'enregistrer</a>
+              <a href="/medecin/connexion" class="w3-left">Connexion</a>
+              <a href="/medecin/deconnexion" class="w3-left w3-margin-right">Déconnexion</a>
+            </li>
+          </ul>
+        </div>
     </head>
 
     <body>
-        <!-- Header -->
-<header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
-  <img class="w3-image" src="../static/medecin/accueil1.jpg" alt="Clinique" width="1600" height="900">
-  <div class="w3-display-middle w3-margin-top w3-center">
-    <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>Prise de rendez-vous</b></span> 
-    </h1>
-  </div>
-</header>
+      <!-- Header -->
+      <header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
+        <img class="w3-image" src="../static/medecin/accueil1.jpg" alt="Clinique" width="1600" height="900">
+        <div class="w3-display-middle w3-margin-top w3-center">
+          <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>Prise de rendez-vous</b></span> 
+          </h1>
+        </div>
+      </header>
 
-<!-- Page content -->
-<div class="w3-content w3-padding" style="max-width:1564px">
+      <!-- Page content -->
+      <div class="w3-content w3-padding" style="max-width:1564px">
+        <!-- About Section -->
+        <div class="w3-container w3-padding-5" id="about">
+          <h3 class="w3-border-bottom w3-border-light-grey w3-padding-12">Prendre un rendez-vous n'aura jamais été aussi simple</h3>
+            <p>La clinique de Meudon vous propose de prendre simplement rendez-vous avec son corps médical. Désormais, vous pouvez visualiser en un clein d'oeil les disponibilités de votre praticien et choisir les créneaux que vous préferrez. Afin de satisfaire l'ensemble des demandes, nous vous renvoyons par mail le rendez-vous qui vous a été attribué.
+            </p>
+        </div>
 
+        <!-- Doctors Section -->
+        <div class="w3-container w3-padding-5" id="Doctors">
+          <h3 class="w3-border-bottom w3-border-light-grey w3-padding-12">Les Docteurs</h3>
+        </div>
 
-  <!-- About Section -->
-  <div class="w3-container w3-padding-5" id="about">
-    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-12">Prendre un rendez-vous n'aura jamais été aussi simple</h3>
-    <p>La clinique de Meudon vous propose de prendre simplement rendez-vous avec son corps médical. Désormais, vous pouvez visualiser en un clein d'oeil les disponibilités de votre praticien et choisir les créneaux que vous préferrez. Afin de satisfaire l'ensemble des demandes, nous vous renvoyons par mail le rendez-vous qui vous a été attribué.
-    </p>
-  </div>
-  <!-- Doctors Section -->
-  <div class="w3-container w3-padding-5" id="Doctors">
-    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-12">Les Docteurs</h3>
-  </div>
+        <div class="w3-row-padding w3-grayscale">
+          <div class="w3-col l3 m6 w3-margin-bottom">
+            <img src="../static/medecin/DrHardy.jpg" alt="Hardy" style="width:100%">
+            <h3>Dr Hardy</h3>
+            <p class="w3-opacity">Gynécologue</p>
+            <a href="/medecin/hardy"><button class="w3-btn-block">Consulter</button></a>
+          </div>
 
-  <div class="w3-row-padding w3-grayscale">
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <img src="../static/medecin/DrHardy.jpg" alt="Hardy" style="width:100%">
-      <h3>Dr Hardy</h3>
-      <p class="w3-opacity">Gynécologue</p>
-      <a href="/medecin/hardy"><button class="w3-btn-block">Consulter</button></a>
-    </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <img src="../static/medecin/DrDehaine.jpg" alt="Dehaine" style="width:100%">
-      <h3>Dr Dehaine</h3>
-      <p class="w3-opacity">Généraliste</p>
-      <a href="/medecin/dehaine"><button class="w3-btn-block">Consulter</button></a>
-    </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <img src="../static/medecin/DrJannetta.jpg" alt="Jannetta" style="width:100%">
-      <h3>Dr Jannetta</h3>
-      <p class="w3-opacity">Pédiatre</p>
-      <a href="/medecin/jannetta"><button class="w3-btn-block">Consulter</button></a>
-    </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <img src="../static/medecin/DrDecottignies.jpg" alt="Decottignies" style="width:100%">
-      <h3>Dr Decottignies</h3>
-      <p class="w3-opacity">Cardiologue</p>
-      <a href="/medecin/decottignies"><button class="w3-btn-block">Consulter</button></a>
-    </div>
-  </div>
-        
+          <div class="w3-col l3 m6 w3-margin-bottom">
+            <img src="../static/medecin/DrDehaine.jpg" alt="Dehaine" style="width:100%">
+            <h3>Dr Dehaine</h3>
+            <p class="w3-opacity">Généraliste</p>
+            <a href="/medecin/dehaine"><button class="w3-btn-block">Consulter</button></a>
+          </div>
+
+          <div class="w3-col l3 m6 w3-margin-bottom">
+            <img src="../static/medecin/DrJannetta.jpg" alt="Jannetta" style="width:100%">
+            <h3>Dr Jannetta</h3>
+            <p class="w3-opacity">Pédiatre</p>
+            <a href="/medecin/jannetta"><button class="w3-btn-block">Consulter</button></a>
+          </div>
+
+          <div class="w3-col l3 m6 w3-margin-bottom">
+            <img src="../static/medecin/DrDecottignies.jpg" alt="Decottignies" style="width:100%">
+            <h3>Dr Decottignies</h3>
+            <p class="w3-opacity">Cardiologue</p>
+            <a href="/medecin/decottignies"><button class="w3-btn-block">Consulter</button></a>
+          </div>
+        </div>
+      </div>
     </body>
 </html>
 
