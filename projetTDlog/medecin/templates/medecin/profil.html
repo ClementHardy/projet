@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../static/medecin/w3.css">
+    <!-- Navbar (sit on top) -->
+    <div class="w3-top">
+      <ul class="w3-navbar w3-white w3-wide w3-padding-8 w3-card-2">
+        <li>
+          <a  href="/medecin/accueil"  class="w3-margin-left"><b>MEUDON</b> Clinique</a>
+        </li>
+        <!-- Float links to the right. Hide them on small screens -->
+        <li class="w3-right ">
+          <a href="/medecin/deconnexion" class="w3-left w3-margin-right">Déconnexion</a>
+        </li>
+      </ul>
+    </div>
+  </head>
+
+
+
+    {% if user.is_authenticated %}
+      {% if user.is_superuser %}
+        <br><br><br><br><br><br>
+        
+        <body>
+          <div class="w3-content w3-padding" style="max-width:1564px">
+              
+            <h1 class="w3-border-bottom w3-border-light-grey w3-padding-12">page de l'administrateur</h1>
+            <a href="/admin"><button class="w3-btn-block">Administration Django</button></a>
+            <h2 class="w3-border-bottom w3-border-light-grey w3-padding-12">Etablir l'emploi du temps de Dr.Hardy</h2>
+            <a href="/medecin/execution/1/1"><button class="w3-btn-block">lundi</button></a>
+            <a href="/medecin/execution/1/2"><button class="w3-btn-block">mardi</button></a>
+            <a href="/medecin/execution/1/3"><button class="w3-btn-block">mercredi</button></a>
+            <a href="/medecin/execution/1/4"><button class="w3-btn-block">jeudi</button></a>
+            <a href="/medecin/execution/1/5"><button class="w3-btn-block">vendredi</button></a>
+            <h2 class="w3-border-bottom w3-border-light-grey w3-padding-12">Etablir l'emploi du temps de Dr.Dehaine</h2>
+            <a href="/medecin/execution/2/1"><button class="w3-btn-block">lundi</button></a>
+            <a href="/medecin/execution/2/2"><button class="w3-btn-block">mardi</button></a>
+            <a href="/medecin/execution/2/3"><button class="w3-btn-block">mercredi</button></a>
+            <a href="/medecin/execution/2/4"><button class="w3-btn-block">jeudi</button></a>
+            <a href="/medecin/execution/2/5"><button class="w3-btn-block">vendredi</button></a>
+            <h2 class="w3-border-bottom w3-border-light-grey w3-padding-12">Etablir l'emploi du temps de Dr.Janetta</h2>
+            <a href="/medecin/execution/3/1"><button class="w3-btn-block">lundi</button></a>
+            <a href="/medecin/execution/3/2"><button class="w3-btn-block">mardi</button></a>
+            <a href="/medecin/execution/3/3"><button class="w3-btn-block">mercredi</button></a>
+            <a href="/medecin/execution/3/4"><button class="w3-btn-block">jeudi</button></a>
+            <a href="/medecin/execution/3/5"><button class="w3-btn-block">vendredi</button></a>
+            <h2 class="w3-border-bottom w3-border-light-grey w3-padding-12">Etablir l'emploi du temps de Dr.Decottignies</h2>
+            <a href="/medecin/execution/4/1"><button class="w3-btn-block">lundi</button></a>
+            <a href="/medecin/execution/4/2"><button class="w3-btn-block">mardi</button></a>
+            <a href="/medecin/execution/4/3"><button class="w3-btn-block">mercredi</button></a>
+            <a href="/medecin/execution/4/4"><button class="w3-btn-block">jeudi</button></a>
+            <a href="/medecin/execution/4/5"><button class="w3-btn-block">vendredi</button></a>
+            
+
+               
+          </div>
+          
+        </body>
+      {%else%}
+          <br><br><br><br><br><br>
+          
+          <body>
+            <!-- Page content -->
+            <div class="w3-content w3-padding" style="max-width:1564px">
+              
+            <h3 class="w3-border-bottom w3-border-light-grey w3-padding-12"> Bienvenue sur votre profil!</h3>
+               
+            </div>
+          </body>
+
+      {%endif%}
+    
+    {%else%}
+      <body>
+        <!-- Page content -->
+        <div class="w3-content w3-padding" style="max-width:1564px">
+          <!-- Info Section -->
+          <div class="w3-container w3-padding-5" id="about">
+            <h3 class="w3-border-bottom w3-border-light-grey w3-padding-12"></h3>
+            <p></p>
+          </div>
+
+          <div class="w3-container w3-padding-5" id="about">
+            <h3 class="w3-border-bottom w3-border-light-grey w3-padding-12"> Vous devez d'abord vous identifier!</h3>
+            <a href="/medecin/accueil"><button class="w3-btn-block">Retour à la page d'accueil</button></a>
+          </div>
+        </div>
+      <body>
+
+    {%endif%}
+
+</html>

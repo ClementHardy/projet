@@ -5,15 +5,16 @@ import numpy as np
 
 n=3 #nombre de patients
 p=3 #nombre de créneaux
-pref= [[1,2,3],[2,1,3],[3,2,1]] #pref est la matrice des préférences des patients : pref[k][i] contient le rang assigné par le patient i au créneau k
+pref= [[2,1,2],[1,2,3],[3,3,1]] #pref est la matrice des préférences des patients : pref[k][i] contient le rang assigné par le patient i au créneau k
 
     
 ## Programme linéaire
 
 
 t=[(i,j) for i in range(n) for j in range(p)]
+creneaux = [i for i in range(p)]
 
-x= LpVariable.dicts('créneaux', creneaux,0, 1,LpInteger)
+x= LpVariable.dicts('créneaux',creneaux,0, 1,LpInteger)
 y=LpVariable.dicts('assign',t,0,1,LpBinary)
 
 prob = LpProblem("Prise de rendez-vous",pulp.LpMinimize)

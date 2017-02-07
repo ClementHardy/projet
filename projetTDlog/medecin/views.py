@@ -1,27 +1,38 @@
 from django.shortcuts import render
 from datetime import datetime
+from django.http import HttpResponse
 
 # connexion utilisateur
 from django.contrib.auth import logout
 from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
+
 #formulaires
 from .forms import Rdv
 from .forms import ConnexionForm,EnregistrementForm
+#modèles
+from .models import Patient
+from .models import Timetable
+
+Nb_creneaux = 3
 
 def home(request):
     return render(request, 'medecin/accueil.html',locals())
 
-def dehaine(request):
-    return render(request, 'medecin/dehaine.html',locals())
-def decottignies(request):
-    return render(request, 'medecin/decottignies.html',locals())
-def jannetta(request):
-    return render(request, 'medecin/jannetta.html',locals())
-def hardy(request):
-    return render(request, 'medecin/hardy.html',locals())
+def calendrier(request):
+    return render(request, 'medecin/calendrier.html',locals())
 
+def profil(request):
+    return render(request, 'medecin/profil.html',locals())
+
+
+def execution(request,medecin,jour):
+    res = Timetable(medecin,jour)
+    
+    return HttpResponse(str(res))
+
+    
 def dragdrop(request):
     return render(request, 'medecin/dragdrop.html', locals())
 
@@ -31,10 +42,8 @@ def formulaire_rdv(request):
     if form.is_valid(): 
         #permet de rendre le formulaire utilisable
         #pour une autre utilisation
-        nom = form.cleaned_data['nom']
-        motif = form.cleaned_data['motif']
-        envoyeur = form.cleaned_data['envoyeur']
-        renvoi = form.cleaned_data['renvoi']
+        data = form.clean()
+        patient = Patient.objects.create(nom=data.get('nom'),motif = data.get('motif'),jour=data.get('jour'), medecin=data.get('medecin'),choix_1=data.get("choix_1"),choix_2=data.get("choix_2"),choix_3=data.get("choix_3"))
         envoi = True
         #on rempli la base de donnée ici !!!
         
