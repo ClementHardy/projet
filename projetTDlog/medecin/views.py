@@ -14,8 +14,7 @@ from .forms import ConnexionForm,EnregistrementForm
 #modèles
 from .models import Patient
 from .models import Timetable
-
-Nb_creneaux = 3
+from .models import Nb_creneaux
 
 def home(request):
     return render(request, 'medecin/accueil.html',locals())
@@ -43,7 +42,7 @@ def formulaire_rdv(request):
         #permet de rendre le formulaire utilisable
         #pour une autre utilisation
         data = form.clean()
-        patient = Patient.objects.create(nom=data.get('nom'),motif = data.get('motif'),jour=data.get('jour'), medecin=data.get('medecin'),choix_1=data.get("choix_1"),choix_2=data.get("choix_2"),choix_3=data.get("choix_3"))
+        patient = Patient.objects.create(nom=data.get('nom'),motif = data.get('motif'),jour=int(data.get('jour')[0]), medecin=int(data.get('medecin')[0]),choix_1=int(data.get("choix_1")[0]),choix_2=int(data.get("choix_2")[0]),choix_3=int(data.get("choix_3")[0]))
         envoi = True
         #on rempli la base de donnée ici !!!
         

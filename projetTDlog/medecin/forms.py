@@ -7,6 +7,9 @@ Created on Fri Dec 16 22:11:59 2016
 
 from django import forms
 
+from django.db import models
+from .models import Nb_creneaux
+from .models import Patient
 MEDECIN = (('1','hardy'),
            ('2','dehaine'),
            ('3','janetta'),
@@ -22,6 +25,16 @@ CHOIX_RDV = (
     ('1', '8h'),
     ('2', '9h'),
     ('3', '10h'),
+    ('4', '11h'),
+    ('5', '12h'),
+    ('6', '14h'),
+    ('7', '14h30'),
+    ('8', '15h'),
+    ('9', '15h30'),
+    ('10', '16h'),
+    ('11', '16h30'),
+    ('12', '17h'),
+    ('13', '18h'),
 )
 class Rdv(forms.Form):
     nom = forms.CharField(max_length=100)
@@ -58,11 +71,18 @@ class Rdv(forms.Form):
         choix_1 = cleaned_data.get('choix_1')
         choix_2 = cleaned_data.get('choix_2')
         choix_3 = cleaned_data.get('choix_3')
-        if choix_1 and choix_2 and choix_3: 
+        medecin=int(cleaned_data.get('medecin')[0])
+        jour=int(cleaned_data.get('jour')[0])
+        if choix_1 and choix_2 and choix_3 and jour and medecin: 
             if choix_1==choix_2 or choix_1==choix_3 or choix_2==choix_3:
                  raise forms.ValidationError(
                     "veuillez classer les créneaux !"
                 )
+            if Patient.objects.filter(medecin=1,jour=jour).count() >= Nb_creneaux:
+                raise forms.ValidationError(
+                    "Plus de créneaux disponibles ce jour là !"
+                )
+        
         return cleaned_data
     
 

@@ -10,6 +10,7 @@ pref= [[2,1,2],[1,2,3],[3,3,1]] #pref est la matrice des préférences des patie
     
 ## Programme linéaire
 
+#problème d'indices dans le plne suivant
 
 t=[(i,j) for i in range(n) for j in range(p)]
 creneaux = [i for i in range(p)]
