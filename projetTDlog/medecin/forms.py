@@ -37,7 +37,6 @@ CHOIX_RDV = (
     ('13', '18h'),
 )
 class Rdv(forms.Form):
-    nom = forms.CharField(max_length=100)
     medecin = forms.MultipleChoiceField(
         required=True,
         widget=forms.SelectMultiple,
@@ -78,7 +77,13 @@ class Rdv(forms.Form):
                  raise forms.ValidationError(
                     "veuillez classer les créneaux !"
                 )
-            if Patient.objects.filter(medecin=1,jour=jour).count() >= Nb_creneaux:
+            for patient in Patient.objects.filter(medecin=medecin,jour=jour,affectation=True):
+                if int(choix_1[0])==patient.creneau or int(choix_2[0])==patient.creneau or int(choix_3[0])==patient.creneau:
+                    raise forms.ValidationError(
+                    "Un de ces créneaux a déjà été affecté!"
+                )
+         
+            if Patient.objects.filter(medecin=medecin,jour=jour).count() >= Nb_creneaux:
                 raise forms.ValidationError(
                     "Plus de créneaux disponibles ce jour là !"
                 )

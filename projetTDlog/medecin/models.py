@@ -14,6 +14,7 @@ class Patient(models.Model):
     choix_2 = models.IntegerField()
     choix_3 = models.IntegerField()
     affectation =models.BooleanField(default=False)
+    creneau = models.IntegerField(null=True)
 
 def Timetable(medecin,jour):
     res=[]
@@ -26,10 +27,18 @@ def Timetable(medecin,jour):
     compt=0
     lien = []
     for patient in Patient.objects.filter(medecin=medecin,jour=jour):   
-        lien.append(patient.nom)
-        pref[int(patient.choix_1)-1][compt]=1
-        pref[int(patient.choix_2)-1][compt]=2
-        pref[int(patient.choix_3)-1][compt]=3 
+        if patient.affectation == False :
+            patient.affectation = True
+            patient.save()
+            pref[int(patient.choix_1)-1][compt]=1
+            pref[int(patient.choix_2)-1][compt]=2
+            pref[int(patient.choix_3)-1][compt]=3
+        else :
+            #il s'agit ici de s'assurer que l'affectation d'un patient ne peu plus bouger
+            #à chaque fois que l'administrateur établi sont emploi du temps, les affectations
+            #sont fixées
+            pref[patient.creneau-1][compt] = -100
+        lien.append(patient)
         compt+=1
             
     x= LpVariable.dicts('créneaux',creneaux,0, 1,LpInteger)
@@ -44,7 +53,9 @@ def Timetable(medecin,jour):
     temp=[0]*n
     for i in range(n):
         temp[i]=int(sum([(j+1)*y[(i,j)].value() for j in range(Nb_creneaux)]))
-        res.append([temp[i],lien[i]])
+        res.append([temp[i],lien[i].nom])       
+        lien[i].creneau=temp[i]
+        lien[i].save()
     return res
    
     

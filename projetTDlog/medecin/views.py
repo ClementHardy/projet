@@ -11,11 +11,12 @@ from django.contrib.auth.models import User
 #formulaires
 from .forms import Rdv
 from .forms import ConnexionForm,EnregistrementForm
+from .forms import CHOIX_RDV
 #modèles
 from .models import Patient
 from .models import Timetable
 from .models import Nb_creneaux
-
+from .models import JOUR
 def home(request):
     return render(request, 'medecin/accueil.html',locals())
 
@@ -23,28 +24,31 @@ def calendrier(request):
     return render(request, 'medecin/calendrier.html',locals())
 
 def profil(request):
+    res=[]
+    for patient in Patient.objects.filter(nom=User.username, affectation = True):
+        res.append([patient.creneau,JOUR[patient.jour-1][1]])
     return render(request, 'medecin/profil.html',locals())
 
 
 def execution(request,medecin,jour):
     res = Timetable(medecin,jour)
+    for i in range(len(res)):
+        res[i][0]=CHOIX_RDV[res[i][0]-1][1]
+
+    return render(request, 'medecin/execution.html',locals())
     
-    return HttpResponse(str(res))
 
     
-def dragdrop(request):
-    return render(request, 'medecin/dragdrop.html', locals())
 
 def formulaire_rdv(request):
     form = Rdv(request.POST or None)
     envoi = False
     if form.is_valid(): 
-        #permet de rendre le formulaire utilisable
-        #pour une autre utilisation
+
         data = form.clean()
-        patient = Patient.objects.create(nom=data.get('nom'),motif = data.get('motif'),jour=int(data.get('jour')[0]), medecin=int(data.get('medecin')[0]),choix_1=int(data.get("choix_1")[0]),choix_2=int(data.get("choix_2")[0]),choix_3=int(data.get("choix_3")[0]))
+        patient = Patient.objects.create(nom=User.username,motif = data.get('motif'),jour=int(data.get('jour')[0]), medecin=int(data.get('medecin')[0]),choix_1=int(data.get("choix_1")[0]),choix_2=int(data.get("choix_2")[0]),choix_3=int(data.get("choix_3")[0]))        
         envoi = True
-        #on rempli la base de donnée ici !!!
+        
         
 
     return render(request, 'medecin/formulaire.html', locals())

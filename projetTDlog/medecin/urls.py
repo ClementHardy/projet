@@ -13,12 +13,11 @@ urlpatterns = [
 
     url(r'^accueil$', views.home),
     url(r'^calendrier$', views.calendrier),
-    url(r'^profil$', views.profil, name='Profil'),
-    url(r'^dragdrop$', views.dragdrop),
+    url(r'^profil$', views.profil, name='Profil'),    
     url(r'^formulaire/$', views.formulaire_rdv, name='formulaire'),
     url(r'^connexion$', views.connexion, name='connexion'),
     url(r'^deconnexion$', views.deconnexion, name='deconnexion'),
     url(r'^enregistrement$', views.enregistrement, name='enregistrement'),
-    url(r'^execution/(\d+)/(\d+)$', views.execution), 
+    url(r'^execution/(\d+)/(\d+)$', views.execution, name='execution'), 
 
 ]
