@@ -33,10 +33,22 @@ prob.solve()
 res=[0]*n
 for i in range(n):
     res[i]=int(sum([j*y[(i,j)].value() for j in range(p)]))
-    print("Le patient {} est assigné au créneau {}".format(i+1,res[i]+1))
+    #print("Le patient {} est assigné au créneau {}".format(i+1,res[i]+1))
 
-
-    
+nb = random.randint(1,100)
+n = random.randint(0,nb-1)
+index = []
+for i in range(nb):
+    index.append(i)
+random.shuffle(index)
+creneaux = [i for i in range(nb)]
+pref= [[1 for i in range(n)] for j in range(nb)] 
+for k in range(n):
+    pref[index[k]][k] = 0
+t=[(i,j) for i in range(n) for j in range(nb)]
+sol = plne(creneaux,t,pref,n)
+print(sol)
+            
 
 
 

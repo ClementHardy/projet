@@ -16,6 +16,20 @@ class Patient(models.Model):
     affectation =models.BooleanField(default=False)
     creneau = models.IntegerField(null=True)
 
+    
+def plne(creneaux,t,pref,n):
+    x= LpVariable.dicts('créneaux',creneaux,0, 1,LpInteger)
+    y=LpVariable.dicts('assign',t,0,1,LpBinary)
+    prob = LpProblem("Prise de rendez-vous",pulp.LpMinimize)
+    prob += lpSum([pref[j][i]*y[(i,j)] for (i,j) in t])
+    for i in range(n):
+        prob+=lpSum(y[(i,j)] for j in range(Nb_creneaux))==1    
+    for j in range(Nb_creneaux):
+        prob+=lpSum(y[(i,j)] for i in range(n))==x[j]    
+    prob.solve()
+    return y
+    
+    
 def Timetable(medecin,jour):
     res=[]
     n=Patient.objects.filter(medecin=medecin,jour=jour).count()
@@ -27,8 +41,7 @@ def Timetable(medecin,jour):
     compt=0
     lien = []
     for patient in Patient.objects.filter(medecin=medecin,jour=jour):   
-        if patient.affectation == False :
-            patient.affectation = True
+        if patient.affectation == False :           
             patient.save()
             pref[int(patient.choix_1)-1][compt]=1
             pref[int(patient.choix_2)-1][compt]=2
@@ -37,19 +50,12 @@ def Timetable(medecin,jour):
             #il s'agit ici de s'assurer que l'affectation d'un patient ne peu plus bouger
             #à chaque fois que l'administrateur établi sont emploi du temps, les affectations
             #sont fixées
-            pref[patient.creneau-1][compt] = -100
+            pref[patient.creneau-1][compt] = 0
         lien.append(patient)
+        patient.affectation = True
         compt+=1
-            
-    x= LpVariable.dicts('créneaux',creneaux,0, 1,LpInteger)
-    y=LpVariable.dicts('assign',t,0,1,LpBinary)
-    prob = LpProblem("Prise de rendez-vous",pulp.LpMinimize)
-    prob += lpSum([pref[j][i]*y[(i,j)] for (i,j) in t])
-    for i in range(n):
-        prob+=lpSum(y[(i,j)] for j in range(Nb_creneaux))==1    
-    for j in range(Nb_creneaux):
-        prob+=lpSum(y[(i,j)] for i in range(n))==x[j]    
-    prob.solve()
+   
+    y = plne(creneaux,t,pref,n)   
     temp=[0]*n
     for i in range(n):
         temp[i]=int(sum([(j+1)*y[(i,j)].value() for j in range(Nb_creneaux)]))
