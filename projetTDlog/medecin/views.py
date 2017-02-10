@@ -16,7 +16,7 @@ from .forms import CHOIX_RDV
 from .models import Patient
 from .models import Timetable
 from .models import Nb_creneaux
-from .models import JOUR
+from .forms import JOUR
 def home(request):
     return render(request, 'medecin/accueil.html',locals())
 
@@ -25,8 +25,10 @@ def calendrier(request):
 
 def profil(request):
     res=[]
-    for patient in Patient.objects.filter(nom=User.username, affectation = True):
-        res.append([patient.creneau,JOUR[patient.jour-1][1]])
+    
+    for patient in Patient.objects.filter(nom=request.user.username, affectation = True):
+       
+        res.append([CHOIX_RDV[patient.creneau-1][1],JOUR[patient.jour-1][1]])
     return render(request, 'medecin/profil.html',locals())
 
 
@@ -46,7 +48,7 @@ def formulaire_rdv(request):
     if form.is_valid(): 
 
         data = form.clean()
-        patient = Patient.objects.create(nom=User.username,motif = data.get('motif'),jour=int(data.get('jour')[0]), medecin=int(data.get('medecin')[0]),choix_1=int(data.get("choix_1")[0]),choix_2=int(data.get("choix_2")[0]),choix_3=int(data.get("choix_3")[0]))        
+        patient = Patient.objects.create(nom=request.user.username,motif = data.get('motif'),jour=int(data.get('jour')[0]), medecin=int(data.get('medecin')[0]),choix_1=int(data.get("choix_1")[0]),choix_2=int(data.get("choix_2")[0]),choix_3=int(data.get("choix_3")[0]))        
         envoi = True
         
         
