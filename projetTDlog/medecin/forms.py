@@ -12,7 +12,7 @@ from .models import Nb_creneaux
 from .models import Patient
 MEDECIN = (('1','hardy'),
            ('2','dehaine'),
-           ('3','janetta'),
+           ('3','jannetta'),
            ('4','decottignies'),
 )
 JOUR = (('1','lundi'),

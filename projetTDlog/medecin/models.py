@@ -47,8 +47,8 @@ def Timetable(medecin,jour):
             pref[int(patient.choix_2)-1][compt]=2
             pref[int(patient.choix_3)-1][compt]=3
         else :
-            #il s'agit ici de s'assurer que l'affectation d'un patient ne peu plus bouger
-            #à chaque fois que l'administrateur établi sont emploi du temps, les affectations
+            #il s'agit ici de s'assurer que l'affectation d'un patient ne peut plus bouger
+            #à chaque fois que l'administrateur établit son emploi du temps, les affectations
             #sont fixées
             pref[patient.creneau-1][compt] = 0
         lien.append(patient)
