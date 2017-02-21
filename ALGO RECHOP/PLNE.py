@@ -1,6 +1,6 @@
 from pulp import *
 import numpy as np
-
+import random as rd
 ## Paramètres 
 
 n=3 #nombre de patients
@@ -20,35 +20,17 @@ y=LpVariable.dicts('assign',t,0,1,LpBinary)
 
 prob = LpProblem("Prise de rendez-vous",pulp.LpMinimize)
 
-prob += lpSum([pref[i][j]*y[(i,j)] for (i,j) in t])
+prob += lpSum([pref[j][i]*y[(i,j)] for (i,j) in t])
 
 for i in range(n):
     prob+=lpSum(y[(i,j)] for j in range(p))==1
 
-for j in range(n):
+for j in range(p):
     prob+=lpSum(y[(i,j)] for i in range(n))==x[j]
 
 prob.solve()
 
-res=[0]*n
-for i in range(n):
-    res[i]=int(sum([j*y[(i,j)].value() for j in range(p)]))
-    #print("Le patient {} est assigné au créneau {}".format(i+1,res[i]+1))
 
-nb = random.randint(1,100)
-n = random.randint(0,nb-1)
-index = []
-for i in range(nb):
-    index.append(i)
-random.shuffle(index)
-creneaux = [i for i in range(nb)]
-pref= [[1 for i in range(n)] for j in range(nb)] 
-for k in range(n):
-    pref[index[k]][k] = 0
-t=[(i,j) for i in range(n) for j in range(nb)]
-sol = plne(creneaux,t,pref,n)
-print(sol)
-            
 
 
 

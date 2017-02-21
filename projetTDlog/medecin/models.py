@@ -16,7 +16,7 @@ class Patient(models.Model):
     affectation =models.BooleanField(default=False)
     creneau = models.IntegerField(null=True)
 
-    
+#programme linéaire en nombres entiers    
 def plne(creneaux,t,pref,n):
     x= LpVariable.dicts('créneaux',creneaux,0, 1,LpInteger)
     y=LpVariable.dicts('assign',t,0,1,LpBinary)
